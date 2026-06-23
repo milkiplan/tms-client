@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.calculateGrade = calculateGrade;
+function calculateGrade(item) {
+    switch (item.kind) {
+        case "quiz":
+            if (item.totalQuestions === 0)
+                return 0;
+            return Math.round((item.correctAnswers / item.totalQuestions) * 100);
+        case "lab":
+            return Math.round(item.functionalityScore * 0.7 + item.codeQualityScore * 0.3);
+        default: {
+            const _check = item;
+            throw new Error(`Unhandled assessment item: ${JSON.stringify(_check)}`);
+        }
+    }
+}
